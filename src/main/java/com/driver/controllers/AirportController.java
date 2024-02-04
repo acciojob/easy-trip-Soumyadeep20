@@ -86,7 +86,7 @@ public class AirportController {
         int c=0;
         for(Integer k: tRepo.keySet())
         {
-            if(date==fliRepo.get(k).getFlightDate() && (fliRepo.get(k).getFromCity().toString()==airportName || fliRepo.get(k).getToCity().toString()==airportName))
+            if(date.compareTo(fliRepo.get(k).getFlightDate() )==0 && (fliRepo.get(k).getFromCity().compareTo(airRepo.get(airportName).getCity())==0 || fliRepo.get(k).getToCity().compareTo(airRepo.get(airportName).getCity())==0))
             {
                 c += tRepo.get(k).size();
             }
@@ -145,7 +145,7 @@ public class AirportController {
 
     @PutMapping("/cancel-a-ticket")
     public String cancelATicket(@RequestParam("flightId")Integer flightId,@RequestParam("passengerId")Integer passengerId){
-        if(!fliRepo.containsKey(flightId) ||  !pRepo.containsKey(passengerId))
+        if(!fliRepo.containsKey(flightId) ||  !pRepo.containsKey(passengerId) || !tRepo.get(flightId).contains(passengerId))
             return "FAILURE";
         tRepo.get(flightId).remove(passengerId);
         return "SUCCESS";
