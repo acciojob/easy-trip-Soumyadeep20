@@ -8,11 +8,12 @@ import com.driver.model.Passenger;
 import io.swagger.models.auth.In;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RestController
+@Controller
 public class AirportController {
     HashMap<String,Airport> airRepo=new HashMap<>();
     HashMap<Integer,Flight> fliRepo=new HashMap<>();
