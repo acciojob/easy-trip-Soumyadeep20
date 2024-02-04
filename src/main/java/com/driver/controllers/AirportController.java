@@ -186,7 +186,11 @@ public class AirportController {
         //We need to get the starting airportName from where the flight will be taking off (Hint think of City variable if that can be of some use)
         //return null incase the flightId is invalid or you are not able to find the airportName
 
-        return fliRepo.get(flightId).getFromCity().toString();
+       for (String k: airRepo.keySet()) {
+           if(fliRepo.get(flightId).getFromCity().compareTo(airRepo.get(k).getCity())==0)
+               return k;
+       }
+        return  null;
     }
 
 
